@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAP O2C Credit Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="shell-header">
+            <div class="shell-header__left">
+                <button class="shell-header__menu-btn" id="menuBtn" aria-label="Toggle navigation">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M3.5 5h13M3.5 10h13M3.5 15h13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                <div class="shell-header__brand">
+                    <div class="shell-header__logo">
+                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                            <rect width="36" height="36" rx="6" fill="url(#logoGrad)"/>
+                            <path d="M10 24V12h4.5v4.5h4.5V12H23v12h-4.5v-4.5h-4.5V24H10z" fill="white"/>
+                            <defs>
+                                <linearGradient id="logoGrad" x1="0" y1="0" x2="36" y2="36">
+                                    <stop offset="0%" stop-color="#0F6CBD"/>
+                                    <stop offset="100%" stop-color="#085796"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="shell-header__title-group">
+                        <h1 class="shell-header__title">SAP Credit Management</h1>
+                        <span class="shell-header__subtitle">Order-to-Cash / Credit Risk</span>
+                    </div>
+                </div>
+            </div>
+            <nav class="shell-header__nav">
+                <a href="#" class="header-nav-item header-nav-item--active">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <rect x="2" y="2" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                        <rect x="10" y="2" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                        <rect x="2" y="10" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                        <rect x="10" y="10" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="header-nav-item">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M3 4.5h12M3 9h12M3 13.5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Reports</span>
+                </a>
+                <a href="#" class="header-nav-item">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <circle cx="9" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M4 16c0-2.761 2.239-5 5-5s5 2.239 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            <div class="shell-header__right">
+                <button class="header-icon-btn" aria-label="Notifications">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 2c-1.1 0-2 .9-2 2v1H8v2l2 2v5c0 1.1.9 2 2 2s2-.9 2-2v-5l2-2V5h-1V4c0-1.1-.9-2-2-2z" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M8 2c0 1.1.9 2 2 2s2-.9 2-2" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="header-user">
+                    <div class="header-user__avatar">
+                        <span>CM</span>
+                    </div>
+                    <div class="header-user__info">
+                        <span class="header-user__name">Credit Manager</span>
+                        <span class="header-user__role">Finance</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="app-container">
+            <aside class="shell-sidebar" id="sidebar">
+                <div class="sidebar-section">
+                    <span class="sidebar-section__title">Navigation</span>
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-nav__item sidebar-nav__item--active" data-view="dashboard">
+                            <span class="sidebar-nav__icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <rect x="2" y="2" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                                    <rect x="11" y="2" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                                    <rect x="2" y="11" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                                    <rect x="11" y="11" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </span>
+                            <span class="sidebar-nav__text">Dashboard</span>
+                            <span class="sidebar-nav__badge">10</span>
+                        </li>
+                        <li class="sidebar-nav__item" data-view="customers">
+                            <span class="sidebar-nav__icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <circle cx="7" cy="6" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+                                    <circle cx="14" cy="15" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M3 18.5h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                            <span class="sidebar-nav__text">Customers</span>
+                        </li>
+                        <li class="sidebar-nav__item" data-view="credit">
+                            <span class="sidebar-nav__icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M3 8h14" stroke="currentColor" stroke-width="1.5"/>
+                                    <circle cx="7" cy="12" r="1" fill="currentColor"/>
+                                    <circle cx="10" cy="12" r="1" fill="currentColor"/>
+                                </svg>
+                            </span>
+                            <span class="sidebar-nav__text">Credit Limits</span>
+                        </li>
+                        <li class="sidebar-nav__item" data-view="history">
+                            <span class="sidebar-nav__icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M10 5.5v5l3.5 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                            <span class="sidebar-nav__text">History</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sidebar-section">
+                    <span class="sidebar-section__title">Quick Actions</span>
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-nav__item sidebar-nav__item--action">
+                            <span class="sidebar-nav__icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                            <span class="sidebar-nav__text">New Request</span>
+                        </li>
+                        <li class="sidebar-nav__item sidebar-nav__item--action">
+                            <span class="sidebar-nav__icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M17 8l-7 7-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M10 3v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                            <span class="sidebar-nav__text">Export Data</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sidebar-footer">
+                    <div class="sidebar-footer__info">
+                        <span class="sidebar-footer__version">v1.0.0</span>
+                        <span class="sidebar-footer__date">Last sync: Today, 09:41</span>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="app-main">
+                <div class="page-header">
+                    <div class="page-header__left">
+                        <nav class="breadcrumb">
+                            <a href="#" class="breadcrumb__item">Home</a>
+                            <span class="breadcrumb__separator">/</span>
+                            <span class="breadcrumb__item breadcrumb__item--current">Credit Overview</span>
+                        </nav>
+                        <h2 class="page-header__title">Credit Dashboard</h2>
+                    </div>
+                    <div class="page-header__actions">
+                        <button class="btn btn--secondary">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            <span>Add Customer</span>
+                        </button>
+                        <button class="btn btn--primary">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M2 8h12M8 2v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            <span>New Credit Check</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="content-wrapper">
+                    <section class="view view--active" id="dashboard-view">
+                        <div class="kpi-grid">
+                            <div class="kpi-card">
+                                <div class="kpi-card__header">
+                                    <span class="kpi-card__label">Total Customers</span>
+                                    <span class="kpi-card__trend kpi-card__trend--up">
+                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                            <path d="M2 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        +2
+                                    </span>
+                                </div>
+                                <div class="kpi-card__value" id="totalCustomers">0</div>
+                                <div class="kpi-card__chart">
+                                    <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                                        <polyline points="0,25 15,22 30,24 45,18 60,20 75,15 100,10" fill="none" stroke="var(--sap-blue)" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="kpi-card kpi-card--success">
+                                <div class="kpi-card__header">
+                                    <span class="kpi-card__label">Credit Approved</span>
+                                    <span class="kpi-card__badge">Healthy</span>
+                                </div>
+                                <div class="kpi-card__value" id="creditOk">0</div>
+                                <div class="kpi-card__footer">
+                                    <span>78% of portfolio</span>
+                                </div>
+                            </div>
+                            <div class="kpi-card kpi-card--warning">
+                                <div class="kpi-card__header">
+                                    <span class="kpi-card__label">At Risk</span>
+                                    <span class="kpi-card__badge">Review</span>
+                                </div>
+                                <div class="kpi-card__value" id="approachingLimit">0</div>
+                                <div class="kpi-card__footer">
+                                    <span>Needs attention</span>
+                                </div>
+                            </div>
+                            <div class="kpi-card kpi-card--danger">
+                                <div class="kpi-card__header">
+                                    <span class="kpi-card__label">Blocked</span>
+                                    <span class="kpi-card__badge">Action Required</span>
+                                </div>
+                                <div class="kpi-card__value" id="creditBlocked">0</div>
+                                <div class="kpi-card__footer">
+                                    <span>Payment overdue</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-grid">
+                            <div class="dashboard-panel dashboard-panel--exposure">
+                                <div class="panel-header">
+                                    <h3 class="panel-header__title">Credit Exposure Analysis</h3>
+                                    <button class="panel-header__action">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/>
+                                            <path d="M8 5v3l2 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="exposure-chart">
+                                    <div class="exposure-gauge">
+                                        <svg viewBox="0 0 120 120">
+                                            <circle cx="60" cy="60" r="50" fill="none" stroke="var(--border)" stroke-width="10"/>
+                                            <circle cx="60" cy="60" r="50" fill="none" stroke="var(--sap-blue)" stroke-width="10" stroke-dashoffset="0" stroke-dasharray="314" stroke-linecap="round" transform="rotate(-90 60 60)" id="exposureGauge"/>
+                                        </svg>
+                                        <div class="exposure-gauge__value">
+                                            <span class="exposure-gauge__percent" id="exposurePercent">0%</span>
+                                            <span class="exposure-gauge__label">Utilized</span>
+                                        </div>
+                                    </div>
+                                    <div class="exposure-metrics">
+                                        <div class="exposure-metric">
+                                            <span class="exposure-metric__label">Total Credit Limit</span>
+                                            <span class="exposure-metric__value" id="exposureLimit">$0</span>
+                                        </div>
+                                        <div class="exposure-metric">
+                                            <span class="exposure-metric__label">Current Exposure</span>
+                                            <span class="exposure-metric__value" id="exposureUsed">$0</span>
+                                        </div>
+                                        <div class="exposure-metric">
+                                            <span class="exposure-metric__label">Available Headroom</span>
+                                            <span class="exposure-metric__value exposure-metric__value--success" id="exposureAvailable">$0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dashboard-panel">
+                                <div class="panel-header">
+                                    <h3 class="panel-header__title">Recent Credit Activities</h3>
+                                    <button class="panel-header__link">View All</button>
+                                </div>
+                                <ul class="activity-list" id="activitiesList"></ul>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-full">
+                            <div class="dashboard-panel">
+                                <div class="panel-header">
+                                    <h3 class="panel-header__title">Credit Risk Distribution</h3>
+                                    <div class="panel-header__filters">
+                                        <button class="filter-btn filter-btn--active">This Week</button>
+                                        <button class="filter-btn">This Month</button>
+                                        <button class="filter-btn">This Quarter</button>
+                                    </div>
+                                </div>
+                                <div class="distribution-chart">
+                                    <div class="distribution-bar">
+                                        <div class="distribution-segment distribution-segment--success" style="width: 70%">
+                                            <span>Credit OK (70%)</span>
+                                        </div>
+                                        <div class="distribution-segment distribution-segment--warning" style="width: 20%">
+                                            <span>At Risk (20%)</span>
+                                        </div>
+                                        <div class="distribution-segment distribution-segment--danger" style="width: 10%">
+                                            <span>Blocked (10%)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="view" id="customers-view">
+                        <div class="customers-layout">
+                            <div class="customers-panel">
+                                <div class="toolbar">
+                                    <div class="search-box">
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                            <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+                                            <path d="M12 12l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        </svg>
+                                        <input type="text" class="search-box__input" id="searchInput" placeholder="Search by customer ID or name...">
+                                    </div>
+                                    <div class="toolbar__filters">
+                                        <div class="select-wrapper">
+                                            <select id="statusFilter" class="select">
+                                                <option value="all">All Status</option>
+                                                <option value="ok">Credit Approved</option>
+                                                <option value="warning">At Risk</option>
+                                                <option value="blocked">Blocked</option>
+                                            </select>
+                                        </div>
+                                        <div class="select-wrapper">
+                                            <select class="select">
+                                                <option value="">All Regions</option>
+                                                <option value="na">North America</option>
+                                                <option value="eu">Europe</option>
+                                                <option value="ap">Asia Pacific</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="toolbar__actions">
+                                        <button class="btn btn--icon" aria-label="Filter columns">
+                                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                                <path d="M2 4h14M4 9h10M6 14h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn btn--icon" aria-label="Export">
+                                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                                <path d="M9 2v10M5 8l4-4 4 4M3 14v2h12v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="table-container">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="sortable" data-sort="id">
+                                                    <span>Customer ID</span>
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 5l3-3 3 3M3 7l3 3 3-3" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+                                                </th>
+                                                <th class="sortable" data-sort="name">
+                                                    <span>Customer Name</span>
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 5l3-3 3 3M3 7l3 3 3-3" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+                                                </th>
+                                                <th class="sortable" data-sort="creditLimit">
+                                                    <span>Credit Limit</span>
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 5l3-3 3 3M3 7l3 3 3-3" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+                                                </th>
+                                                <th class="sortable" data-sort="used">
+                                                    <span>Current Usage</span>
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 5l3-3 3 3M3 7l3 3 3-3" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+                                                </th>
+                                                <th class="sortable" data-sort="available">
+                                                    <span>Available</span>
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 5l3-3 3 3M3 7l3 3 3-3" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+                                                </th>
+                                                <th>
+                                                    <span>Status</span>
+                                                </th>
+                                                <th>
+                                                    <span>Actions</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="customersTableBody"></tbody>
+                                    </table>
+                                </div>
+                                <div class="table-footer">
+                                    <div class="table-info">
+                                        Showing <span id="showingStart">1</span> - <span id="showingEnd">5</span> of <span id="totalCustomers">10</span> customers
+                                    </div>
+                                    <div class="pagination">
+                                        <button class="pagination__btn" id="prevPage" disabled>&lt;</button>
+                                        <span class="pagination__info">Page <span id="currentPage">1</span> of <span id="totalPages">2</span></span>
+                                        <button class="pagination__btn" id="nextPage" disabled>&gt;</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="detail-panel" id="customerDetail">
+                                <div class="detail-panel__empty">
+                                    <div class="empty-state">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                            <circle cx="24" cy="16" r="8" stroke="currentColor" stroke-width="2"/>
+                                            <path d="M10 40c0-3.314 2.686-6 6-6s6 2.686 6 6c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="2"/>
+                                        </svg>
+                                        <p>Select a customer to view credit details</p>
+                                    </div>
+                                </div>
+                                <div class="detail-panel__content" id="customerDetailContent" style="display: none;">
+                                    <div class="detail-header">
+                                        <div class="detail-header__info">
+                                            <h3 id="detailCustomerName">Customer Name</h3>
+                                            <span id="detailCustomerId">CUST001</span>
+                                        </div>
+                                        <div class="detail-header__badge" id="detailStatus">Approved</div>
+                                    </div>
+                                    <div class="detail-section">
+                                        <h4 class="detail-section__title">Credit Information</h4>
+                                        <div class="detail-grid">
+                                            <div class="detail-item">
+                                                <span class="detail-item__label">Credit Limit</span>
+                                                <span class="detail-item__value" id="detailCreditLimit">$50,000</span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-item__label">Receivables</span>
+                                                <span class="detail-item__value" id="detailReceivables">$12,000</span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-item__label">Open Invoices</span>
+                                                <span class="detail-item__value" id="detailInvoices">$8,000</span>
+                                            </div>
+                                            <div class="detail-item detail-item--highlight">
+                                                <span class="detail-item__label">Available Credit</span>
+                                                <span class="detail-item__value" id="detailAvailable">$30,000</span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-item__label">Valid Until</span>
+                                                <span class="detail-item__value" id="detailValidUntil">Dec 31, 2026</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="detail-section">
+                                        <h4 class="detail-section__title">Credit History</h4>
+                                        <ul class="detail-timeline" id="customerHistory"></ul>
+                                    </div>
+                                    <div class="detail-actions">
+                                        <button class="btn btn--primary" id="adjustCreditBtn">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                <path d="M13 9l-7 7-3-3-1 1 4 4 4-4-1-1-3 3 7-7z" stroke="currentColor" stroke-width="1.5"/>
+                                            </svg>
+                                            Adjust Credit Limit
+                                        </button>
+                                        <button class="btn btn--secondary">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                <path d="M2 8h12M8 2v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                            </svg>
+                                            Block Credit
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="view" id="history-view">
+                        <div class="history-panel">
+                            <div class="panel-header">
+                                <h3 class="panel-header__title">Credit History Timeline</h3>
+                            </div>
+                            <div class="history-timeline" id="historyTimeline"></div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="modal" id="creditModal">
+        <div class="modal__overlay"></div>
+        <div class="modal__dialog">
+            <div class="modal__header">
+                <h3>Adjust Credit Limit</h3>
+                <button class="modal__close" id="closeModal">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M5 5l10 10M15 5l-10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <form class="modal__body" id="creditForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="formCustomerId">Customer</label>
+                        <input type="text" id="formCustomerId" readonly>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="formCreditLimit">New Credit Limit *</label>
+                        <div class="input-with-prefix">
+                            <span class="input-prefix">$</span>
+                            <input type="number" id="formCreditLimit" min="0" step="1000" required>
+                        </div>
+                        <span class="form-error" id="formLimitError"></span>
+                    </div>
+                </div>
+                <div class="form-row form-row--2col">
+                    <div class="form-group">
+                        <label for="formValidFrom">Valid From</label>
+                        <input type="date" id="formValidFrom">
+                    </div>
+                    <div class="form-group">
+                        <label for="formValidTo">Valid Until</label>
+                        <input type="date" id="formValidTo">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="formNotes">Reason for Adjustment</label>
+                        <select id="formNotes">
+                            <option value="">Select a reason...</option>
+                            <option value="Payment history">Good payment history</option>
+                            <option value="Business growth">Business expansion</option>
+                            <option value="Annual review">Annual review</option>
+                            <option value="New customer">New customer onboarding</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <div class="modal__footer">
+                <button class="btn btn--secondary" id="cancelForm">Cancel</button>
+                <button class="btn btn--primary" id="submitForm">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
